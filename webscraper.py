@@ -4,6 +4,8 @@ import requests
 #BeautifulSoup is a Python library for pulling data out of HTMl and XML files.
 from bs4 import BeautifulSoup
 
+import pandas
+
 #Response object will be returned. Response object contains server's response to an HTTP request
 response = requests.get('https://www.century21.com/real-estate/round-rock-tx/LCTXROUNDROCK/?')
 #content of the response
@@ -47,6 +49,8 @@ for property in properties:
                 
     l.append(d)
 
-print(l)
+df = pandas.DataFrame(l)
+#save extracted data in csv file
+df.to_csv('output.csv')
 
 
